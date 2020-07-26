@@ -6,7 +6,7 @@ from flask_heroku import Heroku
 import io
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://wsgsdiklgelzam:279327091818fc9b3a4ff4576fed394b09741fca0e736176c3c3bec7640a7dcb@ec2-3-208-50-226.compute-1.amazonaws.com:5432/d3bgl1im74skv6"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://oxbjfaqwiehqhd:3153a9e75bbca5fedcf50f43a450c9988f4f7eeea0ca546f94a3b338f4df3f09@ec2-34-225-162-157.compute-1.amazonaws.com:5432/dbbmldrsq8nl3k"
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -17,9 +17,9 @@ CORS(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    location = db.Column(db.String(), nullable=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(), nullable=False)
+    location = db.Column(db.String(), nullable=True)
 
     def __init__(self, username, password, location):
         self.username = username
