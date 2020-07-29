@@ -6,7 +6,7 @@ from flask_heroku import Heroku
 import io
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://oxbjfaqwiehqhd:3153a9e75bbca5fedcf50f43a450c9988f4f7eeea0ca546f94a3b338f4df3f09@ec2-34-225-162-157.compute-1.amazonaws.com:5432/dbbmldrsq8nl3k"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://cusebgzelwxcoz:d1965231c24ca93521e9e8c4ffa9a545bed04b9025065c23afaa43ae6d5496fe@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d3kj5thujanvjs"
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -60,9 +60,20 @@ def get_all_users():
 
 
 
-@app.route("/user/get/<id>", methods=["GET"])
-def get_user_by_id(id):
-    user = db.session.query(User).filter(User.id == id).first()
+# @app.route("/user/get/<id>", methods=["GET"])
+# def get_user_by_id(id):
+#     user = db.session.query(User).filter(User.id == id).first()
+#     return jsonify(user_schema.dump(user))
+
+# @app.route("/location/get/data/<username>", methods=["GET"])
+# def get_location_by_username(username):
+#     user_id = db.session.query(User.id).filter(User.username == username).first()[0]
+#     user_location = db.session.query(User).filter(User.user_id == username).first()[0]
+#     return jsonify(user_schema.dump(user_location))
+
+@app.route("/user/get/<username>", methods=["GET"])
+def get_user_by_id(username):
+    user = db.session.query(User).filter(User.username == username).first()
     return jsonify(user_schema.dump(user))
 
 
